@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  django:
+    image: django-docker:0.0.1
+    build: .
+    ports:
+      - "8000"
+
+  #db:
+
+  web:
+    build: .
+    env_file:
+      - .env
+    command: python manage.py runserver
+    volumes:
+      - ./movies
+    ports:
+      - "8000"
+
+  frontend:
+    build:
+      context: ../movies-front
+    ports:
+      - "5173"
+    depends_on:
+      - web
+  volumes:
+    postgres_data:
