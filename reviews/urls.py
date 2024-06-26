@@ -5,6 +5,7 @@ from . import views
 router = DefaultRouter()
 router.register(r'movies', views.MovieViewSet)
 router.register(r'reviews', views.ReviewViewSet)
+router.register(r'actors', views.ActorViewSet)
 
 urlpatterns = [
     path("api/", include(router.urls)),
